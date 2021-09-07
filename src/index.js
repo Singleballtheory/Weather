@@ -16,23 +16,36 @@ $(document).ready(function() {
         const response = JSON.parse(this.responseText);
         getElements(response);
       }
-    }
+    };
 
     request.open("GET", url, true);
     request.send();
-
+    
     function getElements(response) {
-      $('.time').text(`The forcast for ${city} on ${response.list[0].dt_txt}`);
-      $('.showHumidity').text(`The humidity in ${city} is ${response.list[0].main.humidity}%`);
-      $('.showTemp').text(`The temperature in fahrenheit is ${response.list[0].main.temp} degrees.`);
-      $('.showVis').text(`The visibility in feet is ${response.list[0].visibility}.`);
-      $('.showClouds').text(`The cloud coverage today is ${response.list[0].clouds.all}%.`);
       
-      $('.time1').text(`The forcast for ${city} on ${response.list[8].dt_txt}`);
-      $('.showHumidity1').text(`The humidity in ${city} is ${response.list[8].main.humidity}%`);
-      $('.showTemp1').text(`The temperature in fahrenheit is ${response.list[8].main.temp} degrees.`);
-      $('.showVis1').text(`The visibility in feet is ${response.list[8].visibility}.`);
-      $('.showClouds1').text(`The cloud coverage today is ${response.list[8].clouds.all}%.`);
+      
+      // const result = Object.entries(response.list[0].main);
+      // console.log(result);
+      // console.log(response.list[0].main);
+
+      // $('.main').text(result);
+      $('.time').text(`The forcast for ${city} on ${response.list[2].dt_txt}`);
+      $('.showHumidity').text(`The humidity in ${city} is ${response.list[2].main.humidity}%`);
+      $('.showTemp').text(`The temperature in fahrenheit is ${response.list[2].main.temp} degrees.`);
+      $('.showVis').text(`The visibility in feet is ${response.list[2].visibility}.`);
+      $('.showClouds').text(`The cloud coverage today is ${response.list[2].clouds.all}%.`);
+      
+      $('.time1').text(`The forcast for ${city} on ${response.list[10].dt_txt}`);
+      $('.showHumidity1').text(`The humidity in ${city} is ${response.list[10].main.humidity}%`);
+      $('.showTemp1').text(`The temperature in fahrenheit is ${response.list[10].main.temp} degrees.`);
+      $('.showVis1').text(`The visibility in feet is ${response.list[10].visibility}.`);
+      $('.showClouds1').text(`The cloud coverage today is ${response.list[10].clouds.all}%.`);
+
+      $('.time2').text(`The forcast for ${city} on ${response.list[18].dt_txt}`);
+      $('.showHumidity2').text(`The humidity in ${city} is ${response.list[18].main.humidity}%`);
+      $('.showTemp2').text(`The temperature in fahrenheit is ${response.list[18].main.temp} degrees.`);
+      $('.showVis2').text(`The visibility in feet is ${response.list[18].visibility}.`);
+      $('.showClouds2').text(`The cloud coverage today is ${response.list[18].clouds.all}%.`);
     }
   });
 });
