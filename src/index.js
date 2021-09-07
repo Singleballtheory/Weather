@@ -3,13 +3,34 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
+function checkNumber(zipcode) {
+  if (isNaN(zipcode)) {
+    return new Error("Please enter a valid zip-code!");
+  } else {
+    return true;
+  }
+}
+
 $(document).ready(function() {
   $('#weatherLocation').click(function() {
-    const city = $('#location').val();
+    const zipcode = parseInt($('#location').val());
     $('#location').val("");
 
+    try {
+      const isNumberValid = checkNumber(zipcode);
+      if (isNumberValid instanceof Error) {
+        console.error(isNumberValid.message);
+        throw RangeError("Please enter a valid zip-code!");
+      } else {
+        console.log("Try was successful, so no need to catch!");
+        $('#displayNumber').text("This number is valid. You may continue.");
+      }
+    } catch(error) {
+      $('.showErrors').text(`Red alert! We have an error: ${error.message}`);
+    }
+
     let request = new XMLHttpRequest();
-    const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${process.env.API_KEY}`;
+    const url = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode}&units=imperial&appid=${process.env.API_KEY}`;
 
     request.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
@@ -29,18 +50,18 @@ $(document).ready(function() {
       // console.log(response.list[0].main);
 
       // $('.main').text(result);
-      $('.time').text(`The forcast for ${city} on ${response.list[2].dt_txt}`);
-      $('.showHumidity').text(`The humidity in ${city} will be ${response.list[2].main.humidity}%`);
+      $('.time').text(`The forcast for ${zipcode} on ${response.list[2].dt_txt}`);
+      $('.showHumidity').text(`The humidity in ${zipcode} will be ${response.list[2].main.humidity}%`);
       $('.showTemp').text(`The temperature in fahrenheit will be ${response.list[2].main.temp} degrees.`);
       $('.showClouds').text(`The cloud coverage today will be ${response.list[2].clouds.all}%.`);
       
-      $('.time1').text(`The forcast for ${city} on ${response.list[10].dt_txt}`);
-      $('.showHumidity1').text(`The humidity in ${city} will be ${response.list[10].main.humidity}%`);
+      $('.time1').text(`The forcast for ${zipcode} on ${response.list[10].dt_txt}`);
+      $('.showHumidity1').text(`The humidity in ${zipcode} will be ${response.list[10].main.humidity}%`);
       $('.showTemp1').text(`The temperature in fahrenheit will be ${response.list[10].main.temp} degrees.`);
       $('.showClouds1').text(`The cloud coverage today will be ${response.list[10].clouds.all}%.`);
 
-      $('.time2').text(`The forcast for ${city} on ${response.list[18].dt_txt}`);
-      $('.showHumidity2').text(`The humidity in ${city} will be ${response.list[18].main.humidity}%`);
+      $('.time2').text(`The forcast for ${zipcode} on ${response.list[18].dt_txt}`);
+      $('.showHumidity2').text(`The humidity in ${zipcode} will be ${response.list[18].main.humidity}%`);
       $('.showTemp2').text(`The temperature in fahrenheit will be ${response.list[18].main.temp} degrees.`);
       $('.showClouds2').text(`The cloud coverage today will be ${response.list[18].clouds.all}%.`);
     }
