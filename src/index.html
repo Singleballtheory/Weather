@@ -8,26 +8,37 @@
     <label for="location">Enter a zip-code:</label>
     <input id="location" type="text">
     <button class="btn-success" id="weatherLocation">Get 6am Weather Forecast</button>
-
     <div id="displayNumber"></div>
-    <div class="showErrors"></div>
-    <div class="time"></div>
-    <div class="main"></div>
-    <div class="showHumidity"></div>
-    <div class="showTemp"></div>
-    <div class="showClouds"></div>
-    <br>
-    <div class="time1"></div>
-    <div class="showErrors1"></div>
-    <div class="showHumidity1"></div>
-    <div class="showTemp1"></div>
-    <div class="showClouds1"></div>
-    <br>
-    <div class="time2"></div>
-    <div class="showErrors2"></div>
-    <div class="showHumidity2"></div>
-    <div class="showTemp2"></div>
-    <div class="showClouds2"></div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card" style="width: 22rem;">
+          <h5><div class="time"></div></h5>
+          <div class="showErrors"></div>
+          <div class="main"></div>
+          <div class="showHumidity"></div>
+          <div class="showTemp"></div>
+          <div class="showClouds"></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" style="width: 22rem;">
+          <h5><div class="time1"></div></h5>
+          <div class="showErrors1"></div>
+          <div class="showHumidity1"></div>
+          <div class="showTemp1"></div>
+          <div class="showClouds1"></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" style="width: 22rem;">
+          <h5><div class="time2"></div></h5>
+          <div class="showErrors2"></div>
+          <div class="showHumidity2"></div>
+          <div class="showTemp2"></div>
+          <div class="showClouds2"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
